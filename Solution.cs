@@ -14,13 +14,13 @@ public class Solution
         {
 
             int numberOfNodesInCurrentLevel = queue.Count;
-            int valuePreviousNode = isEven(currentLevel) ? int.MinValue : int.MaxValue;
+            int valuePreviousNode = IsEven(currentLevel) ? int.MinValue : int.MaxValue;
 
             while (numberOfNodesInCurrentLevel-- > 0)
             {
 
                 TreeNode currentNode = queue.Dequeue();
-                if (currentNodeIsInvalid(currentLevel, valuePreviousNode, currentNode.val))
+                if (CurrentNodeIsInvalid(currentLevel, valuePreviousNode, currentNode.val))
                 {
                     return false;
                 }
@@ -41,27 +41,27 @@ public class Solution
         return true;
     }
 
-    private bool isEven(int value)
+    private bool IsEven(int value)
     {
         return value % 2 == 0;
     }
 
-    private bool nodesAreStrictlyIncreasing(int valuePreviousNode, int valueCurrentNode)
+    private bool NodesAreStrictlyIncreasing(int valuePreviousNode, int valueCurrentNode)
     {
         return valuePreviousNode < valueCurrentNode;
     }
 
-    private bool nodesAreStrictlyDecreasing(int valuePreviousNode, int valueCurrentNode)
+    private bool NodesAreStrictlyDecreasing(int valuePreviousNode, int valueCurrentNode)
     {
         return valuePreviousNode > valueCurrentNode;
     }
 
-    private bool currentNodeIsInvalid(int currentLevel, int valuePreviousNode, int valueCurrentNode)
+    private bool CurrentNodeIsInvalid(int currentLevel, int valuePreviousNode, int valueCurrentNode)
     {
 
-        return (isEven(currentLevel) == isEven(valueCurrentNode))
-                || (isEven(currentLevel) && !nodesAreStrictlyIncreasing(valuePreviousNode, valueCurrentNode))
-                || (!isEven(currentLevel) && !nodesAreStrictlyDecreasing(valuePreviousNode, valueCurrentNode));
+        return (IsEven(currentLevel) == IsEven(valueCurrentNode))
+                || (IsEven(currentLevel) && !NodesAreStrictlyIncreasing(valuePreviousNode, valueCurrentNode))
+                || (!IsEven(currentLevel) && !NodesAreStrictlyDecreasing(valuePreviousNode, valueCurrentNode));
     }
 }
 
